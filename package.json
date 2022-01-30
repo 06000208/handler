@@ -1,0 +1,23 @@
+{
+  "name": "@a06000208/handler",
+  "version": "0.0.1",
+  "description": "nodejs module & event handler",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/06000208/handler.git"
+  },
+  "author": "06000208",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/06000208/handler/issues"
+  },
+  "homepage": "https://github.com/06000208/handler#readme",
+  "exports": "./index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=16.9.0"
+  }
+}
