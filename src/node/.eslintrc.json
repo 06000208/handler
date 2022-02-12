@@ -1,0 +1,10 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "../../.eslintrc.json"
+    ],
+    "env": {
+      "node": true
+    }
+  }
+  
