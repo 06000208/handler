@@ -1,2 +1,4 @@
 # handler
-nodejs module &amp; event handler
+
+Extendable javascript handler for objects, events, and modules
+
