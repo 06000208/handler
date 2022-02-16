@@ -35,4 +35,5 @@ Thumbs.db
 
 # project
 docs/site/
-dist/
+dist/*
+!dist/.gitkeep
