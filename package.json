@@ -18,13 +18,12 @@
     "url": "https://github.com/06000208/handler/issues"
   },
   "homepage": "https://github.com/06000208/handler#readme",
-  "main": "./src/index.cjs",
-  "browser": "./src/index.browser.js",
+  "main": "./src/node-cjs/index.js",
+  "browser": "./src/esm/index.browser.js",
   "exports": {
-    "import": "./src/index.js",
-    "require": "./src/index.cjs"
+    "import": "./src/esm/index.js",
+    "require": "./src/node-cjs/index.js"
   },
-  "type": "module",
   "engines": {
     "node": ">=16.9.0"
   },
