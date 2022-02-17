@@ -20,7 +20,19 @@
     "url": "https://github.com/06000208/handler/issues"
   },
   "homepage": "https://github.com/06000208/handler#readme",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "browser": "./dist/index.browser.min.js",
+  "unpkg": "./dist/index.browser.min.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
   "type": "module",
+  "sideEffects": false,
   "engines": {
     "node": ">=16.9.0"
   },
