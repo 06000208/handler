@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "Extendable javascript handler for objects, events, and modules",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --ext .js,.mjs",
-    "fix": "eslint . --ext .js,.mjs --fix",
+    "test": "echo \"Error: no tests\" && exit 1",
+    "lint": "eslint . --ext .js,.mjs,.cjs",
+    "fix": "eslint . --ext .js,.mjs,.cjs --fix",
     "dev": "node esbuild.config.js",
-    "build": "node esbuild.config.js production",
-    "docs": "jsdoc --template \"./node_modules/boxy-jsdoc-template\" --configure .jsdoc.conf.json"
+    "build": "node esbuild.config.js --production",
+    "docs": "jsdoc --template \"./node_modules/boxy-jsdoc-template\" --configure .jsdoc.conf.json",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
