@@ -24,7 +24,8 @@ class BoxModule extends Box {
          * node.js's require()
          *
          * Due to relative module specifiers, it's intended that this property
-         * is often null after instantiation, and set afterwards.
+         * is likely to be null regardless of instantiation, and set by
+         * something else afterwards.
          * @type {?string}
          * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
          * @see https://nodejs.org/dist/latest-v16.x/docs/api/esm.html#import-specifiers

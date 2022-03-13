@@ -13,8 +13,8 @@ class Construct {
          * The cache of blocks mapped by their ids.
          *
          * Note that this documentation is intentionally very loose and generic,
-         * so you should document specific types for your extended classes.
-         * @type {Map<any, {id: *}>}
+         * you should document specific types in your own classes.
+         * @type {Map<*, {id: *}>}
          */
         this.cache = cache;
     }

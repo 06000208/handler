@@ -16,7 +16,11 @@ class Box extends Block {
         super(id);
 
         /**
-         * An identifier for an instantiated box
+         * An identifier for an instantiated box.
+         *
+         * Note that identifiers are documented as "any" due to what Map
+         * supports, you should document a specific type and syntax for your
+         * ids in your own classes
          * @type {?string}
          * @name Box#id
          */

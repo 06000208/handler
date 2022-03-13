@@ -1,4 +1,9 @@
 /**
+ * Small utilities for interacting with maps
+ * @module util/maps
+ */
+
+/**
  * Logic for easily appending to & creating arrays in maps
  * @param {Map} map
  * @param {*} key
