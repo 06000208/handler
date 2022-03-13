@@ -15,6 +15,11 @@ class ModuleConstruct extends Construct {
         super(cache);
 
         /**
+         * Module specifiers mapped to arrays containing the ids of blocks
+         * claiming to originate from that module.
+         *
+         * `null` is used for blocks without module specifiers if any were
+         * loaded.
          * @type {Map<?string, [string]>}
          */
         this.idsByModuleSpecifier = idsByModuleSpecifier;
