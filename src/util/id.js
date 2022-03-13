@@ -20,9 +20,9 @@ let increment = 0;
   * [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString)
   * @returns {string}
   */
-const generate = function(radix = 36) {
+const generateIdentifier = function(radix = 36) {
     if (increment > 65535) increment = 0;
     return Date.now().toString(radix) + (increment++).toString(radix);
 };
 
-export { generate };
+export { generateIdentifier };

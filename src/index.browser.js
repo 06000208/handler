@@ -5,4 +5,5 @@ export * from "./structures/BoxModule.js";
 export * from "./structures/Construct.js";
 export * from "./structures/ModuleConstruct.js";
 export * from "./structures/Sorter.js";
+export * from "./util/id.js";
 export * from "./util/maps.js";
