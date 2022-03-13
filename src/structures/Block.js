@@ -2,7 +2,8 @@
  * A "block" is an object identified by an id property, and anything that Map
  * accepts as a key may be used as an id.
  *
- * This class is an example implementation & provided for convenience.
+ * This class is an example, and is provided for convenience. You may be better
+ * off using your own implementation.
  * @abstract
  */
 class Block {

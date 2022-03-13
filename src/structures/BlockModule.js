@@ -3,6 +3,9 @@ import { Block } from "./Block.js";
 /**
  * The same as {@link Block}, but has a property for module specifiers (import
  * specifiers and require ids)
+ *
+ * This class is an example, and is provided for convenience. You may be better
+ * off using your own implementation.
  * @abstract
  */
 class BlockModule extends Block {
@@ -19,8 +22,8 @@ class BlockModule extends Block {
          * import specifier usable with ESM imports, or an id usable with
          * node.js's require()
          *
-         * For relative module specifiers it's intended that this property can
-         * be null after instantiation and set afterwards
+         * Due to relative module specifiers, it's intended that this property
+         * is often null after instantiation, and set afterwards.
          * @type {?string}
          * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
          * @see https://nodejs.org/dist/latest-v16.x/docs/api/esm.html#import-specifiers

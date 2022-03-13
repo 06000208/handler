@@ -2,6 +2,9 @@ import { Block } from "./Block.js";
 
 /**
  * A "box" is any object identified by an id property that has a value property.
+ *
+ * This class is an example, and is provided for convenience. You may be better
+ * off using your own implementation.
  * @abstract
  */
 class Box extends Block {

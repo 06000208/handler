@@ -3,6 +3,9 @@ import { Box } from "./Box.js";
 /**
  * The same as {@link Box}, but has a property for module specifiers (import
  * specifiers and require ids)
+ *
+ * This class is an example, and is provided for convenience. You may be better
+ * off using your own implementation.
  * @abstract
  */
 class BoxModule extends Box {
@@ -19,6 +22,9 @@ class BoxModule extends Box {
          * will be a string, if not this will be null. The string is either an
          * import specifier usable with ESM imports, or an id usable with
          * node.js's require()
+         *
+         * Due to relative module specifiers, it's intended that this property
+         * is often null after instantiation, and set afterwards.
          * @type {?string}
          * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
          * @see https://nodejs.org/dist/latest-v16.x/docs/api/esm.html#import-specifiers
