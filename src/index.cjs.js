@@ -7,4 +7,5 @@ export * from "./structures/ModuleConstruct.js";
 export * from "./structures/Sorter.js";
 export * from "./util/id.js";
 export * from "./util/maps.js";
+export * from "./util/misc.js";
 // export * as RequireLoader from "./node/cjs/RequireLoader.js";
