@@ -1,6 +1,9 @@
 /**
  * A "construct" is a manager with a cache and methods/properties related to
  * whats being managed.
+ *
+ * This class is deliberately generic and provided for convenience, intended to
+ * be extended for your own use cases.
  * @abstract
  */
 class Construct {

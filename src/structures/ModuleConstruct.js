@@ -2,6 +2,8 @@ import { Construct } from "./Construct.js";
 import { pushArrayInMap, filterArrayInMap } from "../util/maps.js";
 
 /**
+ * This class is deliberately generic and provided for convenience, intended to
+ * be extended for your own use cases.
  * @abstract
  */
 class ModuleConstruct extends Construct {
