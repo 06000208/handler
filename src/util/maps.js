@@ -1,5 +1,5 @@
 /**
- * Small utilities for interacting with maps
+ * Small utility functions for interacting with maps
  * @module util/maps
  */
 
