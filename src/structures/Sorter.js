@@ -22,9 +22,9 @@ class Sorter {
      * Convenience function to set constructs in the sorter's index object.
      *
      * This function returns the sorter instance to enable chaining.
-     * @param {string} type - A string representing a type, such as the name of
+     * @param {string} type A string representing a type, such as the name of
      * a class. The type property of blocks you want sorted will use this string
-     * @param {Construct} construct - Any instance of a construct, or something
+     * @param {Construct} construct Any instance of a construct, or something
      * which implements the Construct API
      */
     set(type, construct) {
@@ -36,7 +36,7 @@ class Sorter {
      * Convenience function to delete constructs from the sorter's index object.
      *
      * This function returns the sorter instance to enable chaining.
-     * @param {string} type - A string representing a type, such as the name of
+     * @param {string} type A string representing a type, such as the name of
      * a class. The type property of blocks you want sorted will use this string
      */
     delete(type) {

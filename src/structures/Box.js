@@ -17,7 +17,7 @@ import { Block } from "./Block.js";
  */
 class Box extends Block {
     /**
-     * @param {*} [value] - The box's value
+     * @param {*} [value] The box's value
      */
     constructor(value = null) {
         super();

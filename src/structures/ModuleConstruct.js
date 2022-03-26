@@ -22,7 +22,7 @@ class ModuleConstruct extends Construct {
          *
          * `null` is used for blocks without module specifiers if any were
          * loaded.
-         * @type {Map<?string, [string]>}
+         * @type {Map<string|null, [string]>}
          */
         this.idsByModuleSpecifier = idsByModuleSpecifier;
     }

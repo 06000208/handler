@@ -16,7 +16,7 @@ let increment = 0;
 
 /**
   * Generates an id
-  * @param {number} radix - An integer in the range `2` through `36` to use with
+  * @param {number} radix An integer in the range `2` through `36` to use with
   * [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString)
   * @returns {string}
   */

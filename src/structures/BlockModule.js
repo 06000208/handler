@@ -18,7 +18,7 @@ import { Block } from "./Block.js";
  */
 class BlockModule extends Block {
     /**
-     * @param {?string} [moduleSpecifier] - Import specifier or require id
+     * @param {?string} [moduleSpecifier] Import specifier or require id
      * string. Due to relative module specifiers, it's intended that often you
      * won't need to (or be able to) provide it using this parameter.
      */
