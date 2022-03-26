@@ -16,7 +16,7 @@ class Construct {
          * The cache of blocks mapped by their ids.
          *
          * Note that this documentation is intentionally very loose and generic,
-         * you should document specific types in your own classes.
+         * you should document more specific types in your own classes.
          * @type {Map<*, {id: *}>}
          */
         this.cache = cache;
@@ -26,7 +26,7 @@ class Construct {
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @param {{id: *}} block
-     * @returns {boolean} true for success, false for failure
+     * @returns {boolean} True for success, false for failure
      */
     load(block) {
         this.cache.set(block.id, block);
@@ -37,7 +37,7 @@ class Construct {
      * Unloads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @param {{id: *}} block
-     * @returns {boolean} true for success, false for failure
+     * @returns {boolean} True for success, false for failure
      */
     unload(block) {
         return this.cache.delete(block.id);
