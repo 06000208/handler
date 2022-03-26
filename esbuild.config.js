@@ -31,12 +31,6 @@ const build = (name, config) => {
 };
 
 const builds = [
-    // build("browser esm", {
-    //     entryPoints: ["./src/index.browser.js"],
-    //     format: "esm",
-    //     platform: "browser",
-    //     outfile: "./dist/index.browser.js",
-    // }),
     build("minified browser esm", {
         entryPoints: ["./src/index.browser.js"],
         minify: true,
@@ -44,12 +38,6 @@ const builds = [
         platform: "browser",
         outfile: "./dist/index.browser.min.js",
     }),
-    // build("node esm", {
-    //     entryPoints: ["./src/index.js"],
-    //     format: "esm",
-    //     platform: "node",
-    //     outfile: "./dist/index.js",
-    // }),
     build("node cjs", {
         entryPoints: ["./src/index.cjs.js"],
         format: "cjs",
