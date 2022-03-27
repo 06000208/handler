@@ -25,18 +25,13 @@ class Sorter {
          * @type {Map<*, string>}
          */
         this.classTypes = new Map();
-
-        /**
-         * Array of classes used in the classTypes map as keys, necessary for
-         * performance
-         * @private
-         * @type {[*]}
-         */
-        this.classes = [];
     }
 
     /**
      * Registers a type string with a corresponding construct in the sorter.
+     *
+     * If the type has already been registered, this replaces the previous
+     * registration
      *
      * This function returns the sorter instance to enable chaining.
      * @param {string} type A string representing a type, such as the name of
@@ -51,8 +46,10 @@ class Sorter {
     }
 
     /**
-     * Registers a class in the sorter with a corresponding type string and
-     * construct in the sorter.
+     * Registers a class in the sorter with a corresponding type and construct
+     * in the sorter.
+     *
+     * Note that when classes are used, sorts will take longer.
      *
      * This function returns the sorter instance to enable chaining.
      * @param {*} cls
@@ -65,12 +62,11 @@ class Sorter {
     registerClass(cls, type, construct) {
         if (!cls || !type) return this;
         this.classTypes.set(cls, type);
-        this.classes.push(cls);
         return construct ? this.registerType(type, construct) : this;
     }
 
     /**
-     * Removes type/construct pair from the sorter
+     * Removes a type and construct from the sorter.
      *
      * This function returns the sorter instance to enable chaining.
      * @param {string} type A string representing a type, such as the name of
@@ -83,18 +79,18 @@ class Sorter {
     }
 
     /**
-     * Removes a class and corresponding type & construct from the sorter.
+     * Removes a class and it's corresponding type/construct pair from the
+     * sorter.
      *
      * This function returns the sorter instance to enable chaining.
      * @param {*} cls
-     * @param {boolean} [deleteType=true] If you want the type & construct to
-     * remain untouched, set this to false.
+     * @param {boolean} [removeType=true] If you want the type & construct to
+     * remain untouched, set this to false. Usually, you don't want to do this.
      */
-    removeClass(cls, deleteType = true) {
+    removeClass(cls, removeType = true) {
         if (!cls) return this;
-        if (deleteType) this.removeType(this.classTypes.get(cls), false);
+        if (removeType) this.removeType(this.classTypes.get(cls));
         this.classTypes.delete(cls);
-        this.classes.filter(value => value !== cls);
         return this;
     }
 
@@ -108,7 +104,7 @@ class Sorter {
      * block isn't an instance of any registered classes, the block will be
      * ignored.
      *
-     * You can input arrays via destructuring: `sorter.sort(...array)`
+     * You can sort arrays of blocks via destructuring: `sorter.sort(...array)`
      *
      * This function returns the sorter instance to enable chaining.
      * @param  {...{id: *, type: string}} blocks
@@ -119,10 +115,10 @@ class Sorter {
             if (!block) continue;
             if (block.type && this.index[block.type]) {
                 this.index[block.type].load(block);
-            } else if (this.classes.length) {
-                for (const cls of this.classes) {
-                    if (block instanceof cls && this.index[this.classTypes.get(cls)]) {
-                        this.index[this.classTypes.get(cls)].load(block);
+            } else if (this.classTypes.size) {
+                for (const [cls, type] of this.classTypes.entries()) {
+                    if (block instanceof cls && this.index[type]) {
+                        this.index[type].load(block);
                         break;
                     }
                 }
