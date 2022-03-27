@@ -2,13 +2,17 @@
 import esbuild from "esbuild";
 import process from "process";
 import console from "node:console";
+import { readFileSync } from "fs";
+
+// eslint-disable-next-line no-undef
+const { dependencies } = JSON.parse(readFileSync(new URL("./package.json", import.meta.url)));
 
 const production = (process.argv[2] === "--production");
 
 const build = (name, config) => {
     return esbuild.build({
         bundle: true,
-        external: ["./node_modules/*"],
+        external: Object.keys(dependencies),
         watch: production ? false : {
             onRebuild(error, result) {
                 if (error) {
