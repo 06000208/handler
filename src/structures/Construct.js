@@ -8,10 +8,10 @@
  */
 class Construct {
     /**
-     * @param {Map} [cache] A javascript Map, or something which implements the
+     * @param {?Map} [cache] A javascript Map, or something which implements the
      * Map API such as \@discordjs/collection
      */
-    constructor(cache = new Map()) {
+    constructor(cache = null) {
         /**
          * The cache of blocks mapped by their ids.
          *
@@ -19,7 +19,7 @@ class Construct {
          * you should document more specific types in your own classes.
          * @type {Map<*, {id: *}>}
          */
-        this.cache = cache;
+        this.cache = cache || new Map();
     }
 
     /**
