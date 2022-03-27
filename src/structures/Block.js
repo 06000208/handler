@@ -30,11 +30,16 @@ class Block {
     }
 
     /**
-     * Returns an identifier used for instances of this class using handler's
-     * generateIdentifier function. To use different identifiers, extend the
-     * class, or a class which extends this one, and replace
-     * Block#_getIdentifier by adding a static function of the same name.
-     * @returns {string}
+     * Returns an identifier used for instances of this class.
+     *
+     * To use different identifiers, extend the class, or a class which extends
+     * this one, and replace _getIdentifier by adding a static method of the
+     * same name. Whatever your method returns will be used as an
+     * identifier.
+     *
+     * Block's default static _getIdentifier method simply uses handler's
+     * generateIdentifier function
+     * @returns {*}
      */
     static _getIdentifier() {
         return generateIdentifier();
