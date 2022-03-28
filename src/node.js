@@ -1,2 +1,3 @@
 export * from "./all.js";
-// export * from "./node/esm/EventEmitterConstruct.js";
+export * from "./node/EventEmitterConstruct.js";
+export * from "./node/ListenerBlock.js";
