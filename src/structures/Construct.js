@@ -26,7 +26,7 @@ class Construct {
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @param {{id: *}} block
-     * @returns {boolean} True for success, false for failure
+     * @returns {boolean} Returns true upon success, false upon failure
      */
     load(block) {
         this.cache.set(block.id, block);
@@ -37,7 +37,7 @@ class Construct {
      * Unloads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @param {{id: *}} block
-     * @returns {boolean} True for success, false for failure
+     * @returns {boolean} Returns true upon success, false upon failure
      */
     unload(block) {
         return this.cache.delete(block.id);
