@@ -11,7 +11,6 @@ const production = process.argv[2] === "--production";
 const wrapper = (name, config) => {
     return build({
         bundle: true,
-        minify: true,
         external: Object.keys(dependencies),
         watch: production ? false : {
             onRebuild(error, result) {
@@ -40,6 +39,7 @@ const wrapper = (name, config) => {
 const builds = [
     wrapper("minified browser esm", {
         entryPoints: ["./src/index.browser.js"],
+        minify: true,
         format: "esm",
         platform: "browser",
         outfile: "./dist/index.browser.min.js",
