@@ -1,6 +1,6 @@
 {
   "name": "@a06000208/handler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Extendable javascript handler for objects, events, and modules",
   "scripts": {
     "test": "echo \"Error: no tests\" && exit 1",
