@@ -45,7 +45,7 @@ const builds = [
         outfile: "./dist/index.browser.min.js",
     }),
     wrapper("node cjs", {
-        entryPoints: ["./src/index.cjs.js"],
+        entryPoints: ["./src/index.commonjs.js"],
         format: "cjs",
         platform: "node",
         outfile: "./dist/index.cjs",
