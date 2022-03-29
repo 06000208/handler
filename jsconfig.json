@@ -2,5 +2,6 @@
     "compilerOptions": {
         "strictNullChecks": true
     },
-    "exclude": ["node_modules"]
+    "include": ["src"],
+    "exclude": ["node_modules", "docs", "dist"]
 }
