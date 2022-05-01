@@ -1,3 +1,4 @@
+export * from "./structures/BaseConstruct.js";
 export * from "./structures/Block.js";
 export * from "./structures/BlockModule.js";
 export * from "./structures/Box.js";

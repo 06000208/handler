@@ -1,4 +1,5 @@
-import { BaseConstruct } from "./BaseConstruct.js";
+import { Collection } from "@discordjs/collection";
+import { BaseConstruct } from "../structures/BaseConstruct.js";
 
 /**
  * A "construct" is a manager with a cache and methods/properties related to
@@ -6,9 +7,12 @@ import { BaseConstruct } from "./BaseConstruct.js";
  *
  * This class is deliberately generic and provided for convenience, intended to
  * be extended for your own use cases.
+ *
+ * As opposed to the Construct class which uses a Map, this uses a Collection
+ * from @discordjs/collection
  * @abstract
  */
-class Construct extends BaseConstruct {
+class CollectionConstruct extends BaseConstruct {
     constructor() {
         super();
 
@@ -17,9 +21,9 @@ class Construct extends BaseConstruct {
          *
          * Note that this documentation is intentionally loose and generic, and
          * you should document more specific types in your own classes.
-         * @type {Map<*, {id: *}>}
+         * @type {Collection<*, {id: *}>}
          */
-        this.cache = new Map();
+        this.cache = new Collection();
     }
 
     /**
@@ -39,4 +43,4 @@ class Construct extends BaseConstruct {
      */
 }
 
-export { Construct };
+export { CollectionConstruct };
