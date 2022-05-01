@@ -2,6 +2,7 @@
 import { build } from "esbuild";
 import process from "process";
 import console from "node:console";
+import { URL } from "node:url";
 import { readFileSync } from "fs";
 
 // eslint-disable-next-line no-undef
@@ -11,7 +12,7 @@ const production = process.argv[2] === "--production";
 const wrapper = (name, config) => {
     return build({
         bundle: true,
-        external: Object.keys(dependencies),
+        external: Object.keys(dependencies), // The browser build shouldn't utilize any code that depends on these
         watch: production ? false : {
             onRebuild(error, result) {
                 if (error) {
