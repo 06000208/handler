@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { Construct } from "../structures/Construct.js";
-import { Collection } from "@discordjs/collection";
 import EventEmitter from "node:events";
+import { CollectionConstruct } from "./CollectionConstruct.js";
 
 /**
  * @typedef {Object} EventEmitterData
@@ -27,7 +26,7 @@ import EventEmitter from "node:events";
  * for their ids. If this is undesirable, see {@link ListenerBlock} for
  * information on how to change that.
  */
-class EventEmitterConstruct extends Construct {
+class EventEmitterConstruct extends CollectionConstruct {
     /**
      * @param {EventEmitterData|EventEmitter} input An EventEmitterData object,
      * or the EventEmitter this construct is for. If you don't use the latter,
@@ -38,7 +37,7 @@ class EventEmitterConstruct extends Construct {
      * another way.
      */
     constructor(input, emitter = null) {
-        super(new Collection());
+        super();
         const data = this.constructor.parse(input, emitter);
 
         /**
