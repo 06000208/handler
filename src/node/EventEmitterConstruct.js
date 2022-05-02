@@ -32,7 +32,7 @@ class EventEmitterConstruct extends CollectionConstruct {
      * or the EventEmitter this construct is for. If you don't use the latter,
      * you must provide the emitter inside the EventEmitterData object, or use
      * the second parameter.
-     * @param {?EventEmitter} [emitter] - One way of providing the EventEmitter
+     * @param {?EventEmitter} [emitter] One way of providing the EventEmitter
      * this construct is for. This parameter is ignored when one was provided
      * another way.
      */
