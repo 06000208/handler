@@ -115,8 +115,8 @@ class ListenerBlock extends BlockModule {
     /**
      * Parses parameters into a valid ListenerData object, throwing on issues
      *
-     * Note that this function's checks aren't meant for genuine type safety,
-     * but to alert users of mistakes
+     * Note that this function's checks aren't meant for type safety, but to
+     * detect and throw in inoperable circumstances
      * @param {ListenerData|string} input
      * @param {?listener} [listener]
      */
