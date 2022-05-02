@@ -119,7 +119,7 @@ class EventEmitterConstruct extends CollectionConstruct {
      * issues
      *
      * Note that this function's checks aren't meant for genuine type safety,
-     * but to alert users of mistakes
+     * but to detect and throw in inoperable circumstances
      * @param {EventEmitterData|EventEmitter} input
      * @param {?EventEmitter} [emitter]
      */
