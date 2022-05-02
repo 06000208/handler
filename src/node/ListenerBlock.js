@@ -51,7 +51,21 @@ class ListenerBlock extends BlockModule {
      */
     constructor(input, listener = null) {
         super();
-        const data = this.constructor.parse(input, listener);
+
+        // Validation and parameter handling
+        if (!input) throw new TypeError("ListenerBlock's first parameter cannot be falsy, must be an object or string");
+        let data;
+        if (typeof input == "string") {
+            data = {
+                "event": input,
+                "listener": listener,
+            };
+        } else {
+            data = input;
+            if (!data.event || typeof data.event != "string") throw new TypeError("ListenerData#event must be a string");
+            if (!data.listener) data.listener = listener;
+        }
+        if (!isFunction(data.listener)) throw new TypeError("instances of ListenerBlock must be supplied a listener function");
 
         /**
          * The name of the event the listener is for
@@ -76,8 +90,8 @@ class ListenerBlock extends BlockModule {
         this.bindEmitterParameter = data.bindEmitterParameter == null ? null : Boolean(data.bindEmitterParameter);
 
         /**
-         * The event emitter which will emit the event, so you can access
-         * the emitter using `this.emitter` inside your listener functions.
+         * The event emitter which will emit the event, so you can access it
+         * using `this.emitter` inside your listener functions.
          *
          * This property is only set by the construct on load.
          * @type {?EventEmitter}
@@ -85,8 +99,8 @@ class ListenerBlock extends BlockModule {
         this.emitter = null;
 
         /**
-         * The construct which manages this block, so you can access the
-         * construct using `this.construct` inside your listener functions.
+         * The construct which manages this block, so you can access it using
+         * `this.construct` inside your listener functions.
          *
          * This property is only set by the construct on load.
          * @type {?EventEmitterConstruct}
@@ -110,34 +124,6 @@ class ListenerBlock extends BlockModule {
          * @abstract
          */
         this.listener = data.listener;
-    }
-
-    /**
-     * Parses parameters into a valid ListenerData object, throwing on issues
-     *
-     * Note that this function's checks aren't meant for type safety, but to
-     * detect and throw in inoperable circumstances
-     * @param {ListenerData|string} input
-     * @param {?listener} [listener]
-     */
-    static parse(input, listener) {
-        let data;
-        if (input) {
-            if (typeof input == "string") {
-                data = {
-                    "event": input,
-                    "listener": listener,
-                };
-            } else {
-                data = input;
-                if (!data.event || typeof data.event != "string") throw new TypeError("ListenerData#event must be a string");
-                if (!data.listener) data.listener = listener;
-            }
-        } else {
-            throw new TypeError("first parameter cannot be falsy, must be an object or string");
-        }
-        if (!isFunction(data.listener)) throw new TypeError("ListenerBlock must be supplied a function to use as the listener");
-        return data;
     }
 }
 
