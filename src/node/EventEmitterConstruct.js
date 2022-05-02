@@ -118,8 +118,8 @@ class EventEmitterConstruct extends CollectionConstruct {
      * Parses parameters into a valid EventEmitterData object, throwing on
      * issues
      *
-     * Note that this function's checks aren't meant for genuine type safety,
-     * but to detect and throw in inoperable circumstances
+     * Note that this function's checks aren't meant for type safety, but to
+     * detect and throw in inoperable circumstances
      * @param {EventEmitterData|EventEmitter} input
      * @param {?EventEmitter} [emitter]
      */
