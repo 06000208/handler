@@ -2,18 +2,6 @@ import { BlockModule } from "../structures/BlockModule.js";
 import { isFunction } from "../util/misc.js";
 
 /**
- * @typedef {Object} ListenerData
- * @property {string} event The name of the event the listener function is for
- * @property {?boolean|null} [once] Whether the listener should only run once
- * @property {?boolean|null} [bindEmitterParameter] Whether the EventEmitterConstruct
- * should bind the emitter as the first parameter of the function. If omitted,
- * null, or undefined, construct behavior will be left unchanged.
- * @property {?listener} [listener] One way of providing the listener
- * function. If omitted, you must provide the listener using ListenerBlock's
- * second parameter.
- */
-
-/**
  * Callback function called when an event is emitted, as described here:
  * https://nodejs.org/dist/latest/docs/api/events.html#events_event
  *
@@ -27,6 +15,18 @@ import { isFunction } from "../util/misc.js";
  * @param {EventEmitter} [emitter] Optionally present, bound as the first
  * parameter by EventEmitterConstruct when enabled
  * @param {...*} parameters Provided by the event being emitted
+ */
+
+/**
+ * @typedef {Object} ListenerData
+ * @property {string} event The name of the event the listener function is for
+ * @property {?boolean|null} [once] Whether the listener should only run once
+ * @property {?boolean|null} [bindEmitterParameter] Whether the EventEmitterConstruct
+ * should bind the emitter as the first parameter of the function. If omitted,
+ * null, or undefined, construct behavior will be left unchanged.
+ * @property {?listener} [listener] One way of providing the listener
+ * function. If omitted, you must provide the listener using ListenerBlock's
+ * second parameter.
  */
 
 /**
@@ -44,11 +44,10 @@ class ListenerBlock extends BlockModule {
      * @param {ListenerData|string} input Either a ListenerData object, or
      * the name of the event. If using the latter, you must provide the listener
      * function as the second parameter.
-     * @param {?listener} [listener] One way of providing the listener
-     * function, may be modified by EventEmitterConstruct depending on settings,
-     * or ListenerData's overrides. If omitted, you must provide the listener
-     * using the ListenerData object. This parameter is ignored when the
-     * listener is provided using the ListenerData object.
+     * @param {?listener} [listener] One way of providing the listener function.
+     * If omitted, you must provide the listener using the ListenerData object.
+     * This parameter is ignored when the listener is provided using the
+     * ListenerData object.
      */
     constructor(input, listener = null) {
         super();
