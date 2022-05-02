@@ -19,10 +19,10 @@ class Sorter {
         this.index = {};
 
         /**
-         * Classes mapped to equivalent type strings, which are then used with
-         * the regular Sorter#index
+         * Type strings mapped to their equivalent Class, to enable sorting
+         * based on class alone
          * @private
-         * @type {Map<*, string>}
+         * @type {Map<string, *>}
          */
         this.classTypes = new Map();
     }
@@ -52,16 +52,16 @@ class Sorter {
      * Note that when classes are used, sorts will take longer.
      *
      * This function returns the sorter instance to enable chaining.
-     * @param {*} cls
      * @param {string} type A string representing a type, such as the name of
      * a class. The type property of blocks you want sorted will use this string
+     * @param {*} cls
      * @param {?Construct} [construct] If omitted, will only register the class.
      * Blocks won't be sorted unless the type has already been, or will be,
      * registered with Sorter#registerType()
      */
-    registerClass(cls, type, construct) {
-        if (!cls || !type) return this;
-        this.classTypes.set(cls, type);
+    registerClass(type, cls, construct) {
+        if (!type || !cls) return this;
+        this.classTypes.set(type, cls);
         return construct ? this.registerType(type, construct) : this;
     }
 
@@ -71,10 +71,13 @@ class Sorter {
      * This function returns the sorter instance to enable chaining.
      * @param {string} type A string representing a type, such as the name of
      * a class. The type property of blocks you want sorted will use this string
+     * @param {boolean} [removeClass=true] If you want the class to remain
+     * untouched, set this to false. Usually, you don't want to do this.
      */
-    removeType(type) {
+    removeType(type, removeClass = true) {
         if (!type) return this;
         delete this.index[type];
+        if (removeClass) this.removeClass(type, false);
         return this;
     }
 
@@ -83,14 +86,15 @@ class Sorter {
      * sorter.
      *
      * This function returns the sorter instance to enable chaining.
-     * @param {*} cls
+     * @param {string} type A string representing a type, such as the name of
+     * a class. The type property of blocks you want sorted will use this string
      * @param {boolean} [removeType=true] If you want the type & construct to
      * remain untouched, set this to false. Usually, you don't want to do this.
      */
-    removeClass(cls, removeType = true) {
-        if (!cls) return this;
-        if (removeType) this.removeType(this.classTypes.get(cls));
-        this.classTypes.delete(cls);
+    removeClass(type, removeType = true) {
+        if (!type) return this;
+        this.classTypes.delete(type);
+        if (removeType) this.removeType(type, false);
         return this;
     }
 
@@ -116,7 +120,7 @@ class Sorter {
             if (block.type && this.index[block.type]) {
                 this.index[block.type].load(block);
             } else if (this.classTypes.size) {
-                for (const [cls, type] of this.classTypes.entries()) {
+                for (const [type, cls] of this.classTypes.entries()) {
                     if (block instanceof cls && this.index[type]) {
                         this.index[type].load(block);
                         break;
