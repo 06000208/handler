@@ -1,5 +1,4 @@
 import { BlockModule } from "../structures/BlockModule.js";
-import { isFunction } from "../util/misc.js";
 
 /**
  * Callback function called when an event is emitted, as described here:
@@ -52,7 +51,7 @@ class ListenerBlock extends BlockModule {
     constructor(input, listener = null) {
         super();
 
-        // Validation and parameter handling
+        // Validate and handle parameters
         if (!input) throw new TypeError("ListenerBlock's first parameter cannot be falsy, must be an object or string");
         let data;
         if (typeof input == "string") {
@@ -65,7 +64,7 @@ class ListenerBlock extends BlockModule {
             if (!data.event || typeof data.event != "string") throw new TypeError("ListenerData#event must be a string");
             if (!data.listener) data.listener = listener;
         }
-        if (!isFunction(data.listener)) throw new TypeError("instances of ListenerBlock must be supplied a listener function");
+        if (!data.listener || typeof data.listener == "function") throw new TypeError("instances of ListenerBlock must be supplied a listener function");
 
         /**
          * The name of the event the listener is for
