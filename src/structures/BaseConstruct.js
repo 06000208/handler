@@ -1,17 +1,11 @@
 /**
- * Internal class. This won't function unless extended or modified, see
- * Construct and CollectionConstruct's source code for examples of this.
+ * Internal class. This won't function and **will** cause errors unless extended
+ * or modified after instantiation, see Construct and CollectionConstruct's
+ * source code for examples of this.
  * @private
  * @abstract
  */
 class BaseConstruct {
-    constructor() {
-        /**
-         * @type {null|Map<*, {id: *}>}
-         */
-        this.cache = null;
-    }
-
     /**
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
