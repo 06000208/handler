@@ -8,4 +8,4 @@ export * from "./any/mixins/BlockMixin.js";
 export * from "./any/mixins/BoxMixin.js";
 export * from "./any/mixins/ModuleMixin.js";
 export * from "./any/Sorter.js";
-export * from "./util/id.js";
+export * from "./any/util/id.js";

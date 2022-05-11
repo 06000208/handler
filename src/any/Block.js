@@ -1,4 +1,4 @@
-import { generateIdentifier } from "../util/id.js";
+import { generateIdentifier } from "./util/id.js";
 
 /**
  * A "block" is an object identified by an id property, and anything that Map
