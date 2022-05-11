@@ -50,9 +50,7 @@ class ListenerBlock extends BlockModule {
      */
     constructor(input, listener = null) {
         super();
-
-        // Validate and handle parameters
-        if (!input) throw new TypeError("ListenerBlock's first parameter cannot be falsy, must be an object or string");
+        if (!input) throw new TypeError("first parameter cannot be falsy, must be an object or string");
         let data;
         if (typeof input == "string") {
             data = {
@@ -60,11 +58,11 @@ class ListenerBlock extends BlockModule {
                 "listener": listener,
             };
         } else {
-            data = input;
+            data = { ...input };
             if (!data.event || typeof data.event != "string") throw new TypeError("ListenerData#event must be a string");
             if (!data.listener) data.listener = listener;
         }
-        if (!data.listener || typeof data.listener == "function") throw new TypeError("instances of ListenerBlock must be supplied a listener function");
+        if (!data.listener || typeof data.listener != "function") throw new TypeError("instances of ListenerBlock must be supplied a listener function");
 
         /**
          * The name of the event the listener is for

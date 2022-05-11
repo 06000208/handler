@@ -3,7 +3,7 @@ import EventEmitter from "node:events";
 import { CollectionConstruct } from "./CollectionConstruct.js";
 
 /**
- * @typedef {Object} EventEmitterData
+ * @typedef {Object} EmitterConstructData
  * @property {?boolean} [useOnceByDefault=false] When true, EventEmitter#once()
  * will be used by default when loading listener functions. This will be ignored
  * when blocks dictate whether or not once should be used themselves (see
@@ -28,17 +28,25 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  */
 class EventEmitterConstruct extends CollectionConstruct {
     /**
-     * @param {EventEmitterData|EventEmitter} input An EventEmitterData object,
-     * or the EventEmitter this construct is for. If you don't use the latter,
-     * you must provide the emitter inside the EventEmitterData object, or use
-     * the second parameter.
+     * @param {EmitterConstructData|EventEmitter} input An EmitterConstructData
+     * object, or the EventEmitter this construct is for. If you don't use the
+     * latter, you must provide the emitter inside the EmitterConstructData
+     * object, or use the second parameter.
      * @param {?EventEmitter} [emitter] One way of providing the EventEmitter
      * this construct is for. This parameter is ignored when one was provided
      * another way.
      */
-    constructor(input, emitter = null) {
+    constructor(input, emitter) {
         super();
-        const data = this.constructor.parse(input, emitter);
+        if (!input) throw new TypeError("first parameter cannot be falsy, must be an EmitterConstructData object or an instance of EventEmitter");
+        let options;
+        if (input instanceof EventEmitter) {
+            options = { "emitter": input };
+        } else {
+            options = { ...input };
+            if (!options.emitter) options.emitter = emitter;
+        }
+        if (!options.emitter) throw new TypeError("an instance of EventEmitter must be supplied");
 
         /**
          * The EventEmitter this construct is for
@@ -46,7 +54,7 @@ class EventEmitterConstruct extends CollectionConstruct {
          * @type {EventEmitter}
          * @readonly
          */
-        Object.defineProperty(this, "emitter", { value: data.emitter });
+        Object.defineProperty(this, "emitter", { value: options.emitter });
 
         /**
          * Cached ListenerBlocks mapped by their ids.
@@ -71,7 +79,7 @@ class EventEmitterConstruct extends CollectionConstruct {
          * ListenerBlock#bindEmitterParameter)
          * @type {boolean}
          */
-        this.bindEmitterParameter = Boolean(data.bindEmitterParameter);
+        this.bindEmitterParameter = Boolean(options.bindEmitterParameter);
 
         /**
          * When true, EventEmitter#once() will be used by default when loading
@@ -84,7 +92,7 @@ class EventEmitterConstruct extends CollectionConstruct {
          * be used themselves (see ListenerBlock#once)
          * @type {boolean}
          */
-        this.useOnceByDefault = Boolean(data.useOnceByDefault);
+        this.useOnceByDefault = Boolean(options.useOnceByDefault);
     }
 
     /**
@@ -92,10 +100,10 @@ class EventEmitterConstruct extends CollectionConstruct {
      * @returns {boolean} Returns true upon success, false upon failure
      */
     load(block) {
-        if (block.bindEmitterParameter === true || (block.bindEmitterParameter !== false && this.bindEmitterParameter)) {
+        if (block.bindEmitterParameter === true || (this.bindEmitterParameter && block.bindEmitterParameter !== false)) {
             block.listener = block.listener.bind(block, this.emitter);
         }
-        if (block.once === true || (block.once !== false && this.useOnceByDefault)) {
+        if (block.once === true || (this.useOnceByDefault && block.once !== false)) {
             this.emitter.once(block.event, block.listener);
         } else {
             this.emitter.on(block.event, block.listener);
@@ -112,31 +120,6 @@ class EventEmitterConstruct extends CollectionConstruct {
             this.emitter.removeListener(block.event, block.listener);
         }
         return super.unload(block);
-    }
-
-    /**
-     * Parses parameters into a valid EventEmitterData object, throwing on
-     * issues
-     *
-     * Note that this function's checks aren't meant for type safety, but to
-     * detect and throw in inoperable circumstances
-     * @param {EventEmitterData|EventEmitter} input
-     * @param {?EventEmitter} [emitter]
-     */
-    static parse(input, emitter) {
-        let data;
-        if (input) {
-            if (input instanceof EventEmitter) {
-                data = { "emitter": input };
-            } else {
-                data = input;
-                if (!data.emitter) data.emitter = emitter;
-            }
-        } else {
-            throw new TypeError("first parameter cannot be falsy, must be an EventEmitterData object or an instance of EventEmitter");
-        }
-        if (!data.emitter || !(data.emitter instanceof EventEmitter)) throw new TypeError("EventEmitterConstruct must be supplied an instance of EventEmitter");
-        return data;
     }
 }
 
