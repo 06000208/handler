@@ -48,21 +48,18 @@ class ListenerBlock extends BlockModule {
      * This parameter is ignored when the listener is provided using the
      * ListenerData object.
      */
-    constructor(input, listener = null) {
+    constructor(input, listener) {
         super();
         if (!input) throw new TypeError("first parameter cannot be falsy, must be an object or string");
         let data;
         if (typeof input == "string") {
-            data = {
-                "event": input,
-                "listener": listener,
-            };
+            data = { "event": input, "listener": listener };
         } else {
             data = { ...input };
-            if (!data.event || typeof data.event != "string") throw new TypeError("ListenerData#event must be a string");
+            if (!data.event || typeof data.event != "string") throw new TypeError("event must be a string");
             if (!data.listener) data.listener = listener;
         }
-        if (!data.listener || typeof data.listener != "function") throw new TypeError("instances of ListenerBlock must be supplied a listener function");
+        if (!data.listener || typeof data.listener != "function") throw new TypeError("a listener function must be supplied");
 
         /**
          * The name of the event the listener is for
