@@ -1,5 +1,5 @@
 import { Collection } from "@discordjs/collection";
-import { BaseConstruct } from "../structures/BaseConstruct.js";
+import { BaseConstruct } from "../any/BaseConstruct.js";
 
 /**
  * A "construct" is a manager with a cache and methods/properties related to

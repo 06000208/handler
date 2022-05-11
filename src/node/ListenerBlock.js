@@ -1,4 +1,4 @@
-import { BlockModule } from "../structures/BlockModule.js";
+import { BlockModule } from "../any/BlockModule.js";
 
 /**
  * Callback function called when an event is emitted, as described here:
