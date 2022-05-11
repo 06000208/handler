@@ -87,8 +87,9 @@ class ListenerBlock extends BlockModule {
          * The event emitter which will emit the event, so you can access it
          * using `this.emitter` inside your listener functions.
          *
-         * This property is only set by the construct on load.
-         * @type {?EventEmitter}
+         * This property is only set on load, and will be null after
+         * instantiation.
+         * @type {EventEmitter|null}
          */
         this.emitter = null;
 
@@ -96,8 +97,9 @@ class ListenerBlock extends BlockModule {
          * The construct which manages this block, so you can access it using
          * `this.construct` inside your listener functions.
          *
-         * This property is only set by the construct on load.
-         * @type {?EventEmitterConstruct}
+         * This property is only set on load, and will be null after
+         * instantiation.
+         * @type {EventEmitterConstruct|null}
          */
         this.construct = null;
 

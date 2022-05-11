@@ -100,6 +100,8 @@ class EventEmitterConstruct extends CollectionConstruct {
      * @returns {boolean} Returns true upon success, false upon failure
      */
     load(block) {
+        Object.defineProperty(block, "construct", { value: this });
+        Object.defineProperty(block, "emitter", { value: this.emitter });
         if (block.bindEmitterParameter === true || (this.bindEmitterParameter && block.bindEmitterParameter !== false)) {
             block.listener = block.listener.bind(block, this.emitter);
         }
