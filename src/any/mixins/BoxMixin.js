@@ -1,4 +1,4 @@
-const BoxMixin = (superClass) => class Box extends superClass {
+const BoxMixin = (superClass) => class MixedBox extends superClass {
     /**
      * @param {*} [value] The box's value
      * @param {...*} [args]

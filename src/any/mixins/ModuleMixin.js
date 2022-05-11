@@ -1,4 +1,4 @@
-const ModuleMixin = (superClass) => class Module extends superClass {
+const ModuleMixin = (superClass) => class MixedModule extends superClass {
     constructor(...args) {
         super(...args);
         /**
