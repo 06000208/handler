@@ -21,7 +21,7 @@ class CollectionConstruct extends BaseConstruct {
          *
          * Note that this documentation is intentionally loose and generic, and
          * you should document more specific types in your own classes.
-         * @type {Collection<*, {id: *}>}
+         * @type {Collection<*, {id: *, moduleSpecifier: ?string}>}
          */
         this.cache = new Collection();
     }
@@ -30,7 +30,8 @@ class CollectionConstruct extends BaseConstruct {
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @name Construct#load
-     * @param {{id: *}} block
+     * @param {{id: *, moduleSpecifier: ?string}} block
+     * @param {?string} [moduleSpecifier] Import specifier or require id string
      * @returns {boolean} Returns true upon success, false upon failure
      */
 
@@ -38,7 +39,7 @@ class CollectionConstruct extends BaseConstruct {
      * Unloads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @name Construct#unload
-     * @param {{id: *}} block
+     * @param {{id: *, moduleSpecifier: ?string}} block
      * @returns {boolean} Returns true upon success, false upon failure
      */
 }

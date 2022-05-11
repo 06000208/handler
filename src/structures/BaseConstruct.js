@@ -15,10 +15,12 @@ class BaseConstruct {
     /**
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
-     * @param {{id: *}} block
+     * @param {{id: *, moduleSpecifier: ?string}} block
+     * @param {?string} [moduleSpecifier] Import specifier or require id string
      * @returns {boolean} Returns true upon success, false upon failure
      */
-    load(block) {
+    load(block, moduleSpecifier) {
+        if (moduleSpecifier) block.moduleSpecifier = moduleSpecifier;
         this.cache.set(block.id, block);
         return true;
     }
@@ -26,7 +28,7 @@ class BaseConstruct {
     /**
      * Unloads a block, intended to be extended (using the super keyword) or
      * replaced.
-     * @param {{id: *}} block
+     * @param {{id: *, moduleSpecifier: ?string}} block
      * @returns {boolean} Returns true upon success, false upon failure
      */
     unload(block) {
