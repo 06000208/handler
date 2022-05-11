@@ -28,7 +28,7 @@ class Box extends Block {
          * Note that while identifiers are documented as "any" here due to what
          * Map supports, you should document a specific type and syntax for your
          * ids in your own classes.
-         * @type {?string}
+         * @type {*}
          * @name Box#id
          */
 

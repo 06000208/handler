@@ -22,7 +22,7 @@ class BlockModule extends Block {
      * string. Due to relative module specifiers, it's intended that often you
      * won't need to (or be able to) provide it using this parameter.
      */
-    constructor(moduleSpecifier = null) {
+    constructor(moduleSpecifier) {
         super();
 
         /**
@@ -34,12 +34,12 @@ class BlockModule extends Block {
          * Due to relative module specifiers, it's intended that this property
          * may not be set using the parameter, but rather by something else
          * after instantiation.
-         * @type {?string}
+         * @type {string|null}
          * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
          * @see https://nodejs.org/dist/latest-v16.x/docs/api/esm.html#import-specifiers
          * @see https://nodejs.org/dist/latest-v16.x/docs/api/modules.html#requireid
          */
-        this.moduleSpecifier = moduleSpecifier;
+        this.moduleSpecifier = moduleSpecifier || null;
     }
 }
 
