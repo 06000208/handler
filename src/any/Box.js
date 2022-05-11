@@ -1,5 +1,5 @@
 import { Block } from "./Block.js";
-import { BoxMixin } from "./BoxMixin.js";
+import { BoxMixin } from "./mixins/BoxMixin.js";
 
 /**
  * A "box" is any object identified by an id property that has a value property.

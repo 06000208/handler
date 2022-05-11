@@ -1,4 +1,4 @@
-import { generateIdentifier } from "../util/id.js";
+import { generateIdentifier } from "../../util/id.js";
 
 const BlockMixin = (superClass) => class MixinBlock extends superClass {
     constructor(...args) {

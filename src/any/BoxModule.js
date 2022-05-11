@@ -1,5 +1,5 @@
 import { Box } from "./Box.js";
-import { ModuleMixin } from "./ModuleMixin.js";
+import { ModuleMixin } from "./mixins/ModuleMixin.js";
 
 
 /**

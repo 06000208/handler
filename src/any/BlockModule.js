@@ -1,5 +1,5 @@
 import { Block } from "./Block.js";
-import { ModuleMixin } from "./ModuleMixin.js";
+import { ModuleMixin } from "./mixins/ModuleMixin.js";
 
 /**
  * The same as {@link Block}, but has a property for module specifiers (import
