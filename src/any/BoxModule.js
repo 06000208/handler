@@ -1,6 +1,4 @@
 import { Box } from "./Box.js";
-import { ModuleMixin } from "./mixins/ModuleMixin.js";
-
 
 /**
  * The same as {@link Box}, but has a property for module specifiers (import
@@ -18,6 +16,28 @@ import { ModuleMixin } from "./mixins/ModuleMixin.js";
  * specification of the construct you're using them with.
  * @abstract
  */
-class BoxModule extends ModuleMixin(Box) {}
+class BoxModule extends Box {
+    /**
+     * @param {*} [value] The box's value
+     */
+    constructor(value = null) {
+        super(value);
+
+        /**
+         * If module origin is applicable to an instance of this class, this
+         * will be a string, if not, this will be null. The string is either an
+         * import specifier usable with ESM imports, or an id usable with
+         * node.js's require()
+         *
+         * Due to relative module specifiers and the mechanics involved, this
+         * property is intended to be set after instantiation.
+         * @type {string|null}
+         * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+         * @see https://nodejs.org/dist/latest-v16.x/docs/api/esm.html#import-specifiers
+         * @see https://nodejs.org/dist/latest-v16.x/docs/api/modules.html#requireid
+         */
+        this.moduleSpecifier = null;
+    }
+}
 
 export { BoxModule };
