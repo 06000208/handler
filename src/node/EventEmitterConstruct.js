@@ -28,7 +28,7 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  */
 class EventEmitterConstruct extends CollectionConstruct {
     /**
-     * @param {EmitterConstructData|EventEmitter} input An EmitterConstructData
+     * @param {EmitterConstructData|EventEmitter|null} input An EmitterConstructData
      * object, or the EventEmitter this construct is for. If you don't use the
      * latter, you must provide the emitter inside the EmitterConstructData
      * object, or use the second parameter.
@@ -38,15 +38,12 @@ class EventEmitterConstruct extends CollectionConstruct {
      */
     constructor(input, emitter) {
         super();
-        if (!input) throw new TypeError("first parameter cannot be falsy, must be an EmitterConstructData object or an instance of EventEmitter");
-        let options;
-        if (input instanceof EventEmitter) {
-            options = { "emitter": input };
-        } else {
-            options = { ...input };
-            if (!options.emitter) options.emitter = emitter;
+        let options = {};
+        if (input) options = input instanceof EventEmitter ? { "emitter": input } : { ...input };
+        if (!options.emitter) {
+            if (!emitter || emitter instanceof EventEmitter == false) throw new TypeError("an instance of EventEmitter must be supplied");
+            options.emitter = emitter;
         }
-        if (!options.emitter) throw new TypeError("an instance of EventEmitter must be supplied");
 
         /**
          * The EventEmitter this construct is for
