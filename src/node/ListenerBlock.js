@@ -4,15 +4,24 @@ import { BlockModule } from "../any/BlockModule.js";
  * Callback function called when an event is emitted, as described here:
  * https://nodejs.org/dist/latest/docs/api/events.html#events_event
  *
- * The emitter can be bound as the first parameter by EventEmitterConstruct on
- * load depending it's `bindEmitterParameter` property and ListenerBlock's
- * property of the same name, with the latter taking priority over the former.
+ * By default, the `this` keyword is a reference to the function's respective
+ * EventEmitter. This may be changed to the function's respective ListenerBlock
+ * via EventEmitterConstruct and ListenerBlock's `bindThis` options, with the
+ * latter taking priority over the former.
  *
  * Note that if you use an arrow function, you won't be able to use the `this`
- * keyword to access ListenerBlock#emitter, ListenerBlock#construct, etc.
+ * keyword to access the event emitter (by default), or ListenerBlock#emitter,
+ * ListenerBlock#construct, etc. when bindThis is enabled.
+ *
+ * As a legacy feature, the emitter can be bound as the first parameter on load
+ * depending EventEmitterConstruct and ListenerBlock's `bindEmitterParameter`
+ * options, with the latter taking priority over the former.
  * @callback listener
- * @param {EventEmitter} [emitter] Optionally present, bound as the first
- * parameter by EventEmitterConstruct when enabled
+ * @param {EventEmitter} [emitter] Optionally present, only bound as the first
+ * parameter by EventEmitterConstruct when enabled. Note that this is a legacy
+ * feature, and that the preferred way to access the emitter from a listener
+ * function is by using the `this` keyword. See EventEmitterConstruct or
+ * ListenerBlock's `bindThis` options for more information
  * @param {...*} parameters Provided by the event being emitted
  */
 
@@ -20,9 +29,10 @@ import { BlockModule } from "../any/BlockModule.js";
  * @typedef {Object} ListenerData
  * @property {string} event The name of the event the listener function is for
  * @property {?boolean|null} [once] Whether the listener should only run once
+ * @property {?boolean|null} [bindThis] Whether the listener's this keyword
+ * should be set to it's respective ListenerBlock
  * @property {?boolean|null} [bindEmitterParameter] Whether the EventEmitterConstruct
- * should bind the emitter as the first parameter of the function. If omitted,
- * null, or undefined, construct behavior will be left unchanged.
+ * should bind the emitter as the first parameter of the function
  * @property {?listener} [listener] One way of providing the listener
  * function. If omitted, you must provide the listener using ListenerBlock's
  * second parameter.
@@ -76,9 +86,32 @@ class ListenerBlock extends BlockModule {
         this.once = data.once == null ? null : Boolean(data.once);
 
         /**
+         * Whether the listener's `this` keyword should be set to it's respective
+         * ListenerBlock. If null, construct behavior will be left unchanged.
+         *
+         * Normally, a listener function's `this` keyword is a reference to it's
+         * respective EventEmitter instance, and for most purposes this is
+         * satisfactory, but if you have extended the ListenerBlock class with
+         * properties or other methods, you may wish for those to be accessible
+         * via `this` too.
+         *
+         * When using bindThis, the event emitter will still be accessible via
+         * `this.emitter`. For information on the default `this` keyword in the
+         * context of events, see https://nodejs.org/docs/latest/api/events.html#passing-arguments-and-this-to-listeners
+         * @type {boolean|null}
+         */
+        this.bindThis = data.bindThis == null ? null : Boolean(data.bindThis);
+
+        /**
          * Whether the EventEmitterConstruct should bind the emitter as the
          * first parameter of the function. If null, construct behavior will be
          * left unchanged.
+         *
+         * Note that this is a legacy feature, and that the preferred way to
+         * access the emitter from a listener function is by using the `this`
+         * keyword, either directly by default, or via ListenerBlock#emitter
+         * when EventEmitterConstruct or ListenerBlock's `bindThis` option is
+         * enabled.
          * @type {boolean|null}
          */
         this.bindEmitterParameter = data.bindEmitterParameter == null ? null : Boolean(data.bindEmitterParameter);
