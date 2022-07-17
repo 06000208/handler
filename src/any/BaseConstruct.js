@@ -10,11 +10,9 @@ class BaseConstruct {
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
      * @param {{id: *, moduleSpecifier: ?string}} block
-     * @param {?string} [moduleSpecifier] Import specifier or require id string
      * @returns {boolean} Returns true upon success, false upon failure
      */
-    load(block, moduleSpecifier) {
-        if (moduleSpecifier) block.moduleSpecifier = moduleSpecifier;
+    load(block) {
         this.cache.set(block.id, block);
         return true;
     }
