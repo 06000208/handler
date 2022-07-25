@@ -39,7 +39,7 @@
     "node": ">=16.9.0"
   },
   "dependencies": {
-    "@discordjs/collection": "^0.5.0"
+    "@discordjs/collection": "^1.0.0"
   },
   "devDependencies": {
     "boxy-jsdoc-template": "^2.0.2",
