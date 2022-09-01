@@ -12,7 +12,7 @@ import { BaseConstruct } from "../any/BaseConstruct.js";
  * from @discordjs/collection
  * @abstract
  */
-class CollectionConstruct extends BaseConstruct {
+export class CollectionConstruct extends BaseConstruct {
     constructor() {
         super();
 
@@ -42,5 +42,3 @@ class CollectionConstruct extends BaseConstruct {
      * @returns {boolean} Returns true upon success, false upon failure
      */
 }
-
-export { CollectionConstruct };

@@ -15,7 +15,7 @@ import { Block } from "./Block.js";
  * specification of the construct you're using them with.
  * @abstract
  */
-class Box extends Block {
+export class Box extends Block {
     /**
      * @param {*} [value] The box's value
      */
@@ -30,5 +30,3 @@ class Box extends Block {
         this.value = value;
     }
 }
-
-export { Box };

@@ -16,7 +16,7 @@ import { generateIdentifier } from "./util/id.js";
  * specification of the construct you're using them with.
  * @abstract
  */
-class Block {
+export class Block {
     constructor() {
         /**
          * An identifier for an instantiated block.
@@ -45,5 +45,3 @@ class Block {
         return generateIdentifier();
     }
 }
-
-export { Block };

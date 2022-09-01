@@ -48,7 +48,7 @@ import { BlockModule } from "../any/BlockModule.js";
  * this is undesirable, extend the class and replace Block#_getIdentifier by
  * adding a static function of the same name.
  */
-class ListenerBlock extends BlockModule {
+export class ListenerBlock extends BlockModule {
     /**
      * @param {ListenerData|string} input Either a ListenerData object, or
      * the name of the event. If using the latter, you must provide the listener
@@ -155,5 +155,3 @@ class ListenerBlock extends BlockModule {
         this.listener = data.listener;
     }
 }
-
-export { ListenerBlock };

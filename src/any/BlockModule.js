@@ -16,7 +16,7 @@ import { Block } from "./Block.js";
  * specification of the construct you're using them with.
  * @abstract
  */
-class BlockModule extends Block {
+export class BlockModule extends Block {
     constructor() {
         super();
 
@@ -36,5 +36,3 @@ class BlockModule extends Block {
         this.moduleSpecifier = null;
     }
 }
-
-export { BlockModule };

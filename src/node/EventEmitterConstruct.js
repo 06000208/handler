@@ -46,7 +46,7 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  * for their ids. If this is undesirable, see {@link ListenerBlock} for
  * information on how to change that.
  */
-class EventEmitterConstruct extends CollectionConstruct {
+export class EventEmitterConstruct extends CollectionConstruct {
     /**
      * @param {EmitterConstructData|EventEmitter|null} input An EmitterConstructData
      * object, or the EventEmitter this construct is for. If you don't use the
@@ -162,5 +162,3 @@ class EventEmitterConstruct extends CollectionConstruct {
         return super.unload(block);
     }
 }
-
-export { EventEmitterConstruct };

@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { createRequire } from "module";
+import { createRequire } from "node:module";
 
 /**
  * ESM counterpart to the node.js cjs only class RequireLoader using
  * createRequire
  */
-class RequireLoader {
+export class RequireLoader {
     constructor(path) {
         this.require = createRequire(path);
     }

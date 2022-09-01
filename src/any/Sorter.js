@@ -8,7 +8,7 @@
  * When there isn't a type property, if the type isn't registered, or if the
  * block isn't an instance of any registered classes, the block will be ignored.
  */
-class Sorter {
+export class Sorter {
     constructor() {
         /**
          * Type strings paired with constructs, or something which implements
@@ -131,5 +131,3 @@ class Sorter {
         return this;
     }
 }
-
-export { Sorter };

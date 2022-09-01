@@ -5,7 +5,7 @@
  * @private
  * @abstract
  */
-class BaseConstruct {
+export class BaseConstruct {
     /**
      * Loads a block, intended to be extended (using the super keyword) or
      * replaced.
@@ -27,5 +27,3 @@ class BaseConstruct {
         return this.cache.delete(block.id);
     }
 }
-
-export { BaseConstruct };

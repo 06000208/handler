@@ -16,7 +16,7 @@ import { Box } from "./Box.js";
  * specification of the construct you're using them with.
  * @abstract
  */
-class BoxModule extends Box {
+export class BoxModule extends Box {
     /**
      * @param {*} [value] The box's value
      */
@@ -39,5 +39,3 @@ class BoxModule extends Box {
         this.moduleSpecifier = null;
     }
 }
-
-export { BoxModule };

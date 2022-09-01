@@ -8,7 +8,7 @@ import { BaseConstruct } from "./BaseConstruct.js";
  * be extended for your own use cases.
  * @abstract
  */
-class Construct extends BaseConstruct {
+export class Construct extends BaseConstruct {
     constructor() {
         super();
 
@@ -38,5 +38,3 @@ class Construct extends BaseConstruct {
      * @returns {boolean} Returns true upon success, false upon failure
      */
 }
-
-export { Construct };

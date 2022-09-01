@@ -5,5 +5,5 @@
  * implications as to what modules may or may not contain...
  * @see https://nodejs.org/api/worker_threads.html
  */
-class ImportWorkerLoader {}
+export class ImportWorkerLoader {}
 throw Error("Unfinished");
