@@ -113,7 +113,7 @@ export class Sorter {
      * This function returns the sorter instance to enable chaining.
      * @param  {...{id: *, type: string}} blocks
      */
-    sort(...blocks) {
+    load(...blocks) {
         if (!blocks.length) return this;
         for (const block of blocks) {
             if (!block) continue;
