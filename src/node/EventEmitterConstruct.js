@@ -58,8 +58,7 @@ export class EventEmitterConstruct extends CollectionConstruct {
      */
     constructor(input, emitter) {
         super();
-        let options = {};
-        if (input) options = input instanceof EventEmitter ? { "emitter": input } : { ...input };
+        const options = input ? (input instanceof EventEmitter ? { "emitter": input } : { ...input }) : {};
         if (!options.emitter) {
             if (!emitter || emitter instanceof EventEmitter == false) throw new TypeError("an instance of EventEmitter must be supplied");
             options.emitter = emitter;
