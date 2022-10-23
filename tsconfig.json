@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "declaration": true,
+        "removeComments": false,
+        "emitDeclarationOnly": true,
+        "outDir": "dist",
+        "declarationMap": true,
+        "strictNullChecks": true,
+        "moduleResolution": "node",
+        "module": "ES2022",
+        "skipLibCheck": true,
+    },
+    "include": ["src"],
+}
