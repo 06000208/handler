@@ -1,4 +1,14 @@
 export * from "./node.js";
-// export * as RequireLoader from "./node/cjs/RequireLoader.js";
 import * as node from "./node.js";
-export default { ...node };
+import * as RequireLoader from "./node/cjs/RequireLoader.cjs";
+export { RequireLoader };
+export default {
+    ...node,
+    ...RequireLoader,
+};
+// import { RequireLoader } from "./node/cjs/RequireLoader.cjs";
+// export { RequireLoader };
+// export default {
+//     ...node,
+//     "RequireLoader": RequireLoader,
+// };

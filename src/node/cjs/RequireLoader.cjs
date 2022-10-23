@@ -10,4 +10,4 @@ class RequireLoader {
     }
 }
 
-module.exports = RequireLoader;
+module.exports.RequireLoader = RequireLoader;
