@@ -14,5 +14,3 @@ export class RequireLoader {
         //
     }
 }
-
-throw Error("Unfinished");

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-class RequireLoader {
+module.exports.RequireLoader = class RequireLoader {
     constructor(path) {
         //
     }
@@ -8,6 +8,4 @@ class RequireLoader {
     loadModule(id) {
         //
     }
-}
-
-module.exports.RequireLoader = RequireLoader;
+};
