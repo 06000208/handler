@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 module.exports.RequireLoader = class RequireLoader {
-    constructor(path) {
+    constructor() {
         //
     }
 
-    loadModule(id) {
+    loadModule(specifier) {
         //
     }
 };
