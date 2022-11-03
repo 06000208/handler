@@ -18,7 +18,7 @@
     "fix": "eslint . --ext .js,.mjs,.cjs --fix",
     "dev": "node esbuild.config.js",
     "ts": "npx tsc",
-    "build": "node esbuild.config.js --production",
+    "build": "node esbuild.config.js --production && npx tsc",
     "docs": "jsdoc --template \"./node_modules/boxy-jsdoc-template\" --configure .jsdoc.conf.json",
     "prepare": "npm run build"
   },
