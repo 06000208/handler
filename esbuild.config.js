@@ -5,14 +5,16 @@ import process from "node:process";
 import { readFileSync } from "node:fs";
 import { build } from "esbuild";
 
-// eslint-disable-next-line no-undef
-const { dependencies } = JSON.parse(readFileSync(new URL("./package.json", import.meta.url)));
+// Commented out because this package doesn't currently have any dependencies
+// const { dependencies } = JSON.parse(readFileSync(new URL("./package.json", import.meta.url)));
 const production = process.argv[2] === "--production";
 
 const wrapper = (name, config) => {
     return build({
         bundle: true,
-        external: Object.keys(dependencies), // The browser build shouldn't utilize any code that depends on these
+        // Commented out because this package doesn't currently have any dependencies
+        // The browser build shouldn't utilize any code that depends on these
+        // external: Object.keys(dependencies),
         watch: production ? false : {
             onRebuild(error, result) {
                 if (error) {
