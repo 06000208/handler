@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-import EventEmitter from "node:events";
-import { CollectionConstruct } from "./CollectionConstruct.js";
+import { Construct } from "../any/Construct.js";
 
 /**
- * @typedef {Object} EmitterConstructData
+ * @typedef {Object} EventEmitterConstructOptions
  * @property {?boolean} [useOnceByDefault=false] When true, EventEmitter#once()
  * will be used by default when loading listener functions. This will be ignored
  * when blocks dictate whether or not once should be used themselves (see
@@ -11,14 +10,15 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  * @property {?boolean} [bindThis=false] When true, listener functions will have
  * their respective ListenerBlock objects set as their `this` keyword value.
  *
- * Normally, a listener function's `this` keyword is a reference to it's
+ * Normally a listener function's `this` keyword is a reference to it's
  * respective EventEmitter instance, and for most purposes this is satisfactory,
  * but if you have extended the ListenerBlock class with properties or other
  * methods, you may wish for those to be accessible via `this` too.
  *
- * When using bindThis, the event emitter will still be accessible via
- * `this.emitter`. For information on the default `this` keyword in the context
- * of events, see https://nodejs.org/docs/latest/api/events.html#passing-arguments-and-this-to-listeners
+ * For information on the default `this` keyword in the context of events, see
+ * https://nodejs.org/docs/latest/api/events.html#passing-arguments-and-this-to-listeners
+ *
+ * When using bindThis, the event emitter will still be accessible via `this.emitter`.
  *
  * This will be ignored when blocks dictate whether or not their `this` keyword
  * should be set themselves (see ListenerBlock#bindThis)
@@ -32,9 +32,6 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  *
  * This will be ignored when blocks dictate whether or not the parameter should
  * be bound themselves (see ListenerBlock#bindEmitterParameter)
-* @property {?EventEmitter} [emitter] One way of providing the EventEmitter
- * this construct is for. If omitted, you must provide the listener using
- * EventEmitterConstruct's second parameter.
  */
 
 /**
@@ -46,31 +43,24 @@ import { CollectionConstruct } from "./CollectionConstruct.js";
  * for their ids. If this is undesirable, see {@link ListenerBlock} for
  * information on how to change that.
  */
-export class EventEmitterConstruct extends CollectionConstruct {
+export class EventEmitterConstruct extends Construct {
     /**
-     * @param {EmitterConstructData|EventEmitter|null} input An EmitterConstructData
-     * object, or the EventEmitter this construct is for. If you don't use the
-     * latter, you must provide the emitter inside the EmitterConstructData
-     * object, or use the second parameter.
-     * @param {?EventEmitter} [emitter] One way of providing the EventEmitter
-     * this construct is for. This parameter is ignored when one was provided
-     * another way.
+     * @param {EventEmitter} emitter The EventEmitter instance this construct wraps
+     * @param {?EventEmitterConstructOptions} [options] Options for the construct
+     * @param {?Map<*, {id: *, moduleSpecifier: ?string}>} [cache] Map or map-like object implementing the Map api
      */
-    constructor(input, emitter) {
-        super();
-        const options = input ? (input instanceof EventEmitter ? { "emitter": input } : { ...input }) : {};
-        if (!options.emitter) {
-            if (!emitter || emitter instanceof EventEmitter == false) throw new TypeError("an instance of EventEmitter must be supplied");
-            options.emitter = emitter;
-        }
+    constructor(emitter, options, cache) {
+        super(cache);
+        if (!emitter) throw new TypeError("an instance of EventEmitter must be supplied");
+        const opts = options || {};
 
         /**
-         * The EventEmitter this construct is for
+         * The EventEmitter this construct wraps
          * @name EventEmitterConstruct#emitter
          * @type {EventEmitter}
          * @readonly
          */
-        Object.defineProperty(this, "emitter", { value: options.emitter });
+        Object.defineProperty(this, "emitter", { value: emitter });
 
         /**
          * Cached ListenerBlocks mapped by their ids.
@@ -78,8 +68,8 @@ export class EventEmitterConstruct extends CollectionConstruct {
          * By default, handler's block classes use the generateIdentifier
          * function for their ids. If this is undesirable, see
          * {@link ListenerBlock} for information on how to change that.
-         * @type {Collection<string, ListenerBlock>}
-         * @name EventConstruct#cache
+         * @name EventEmitterConstruct#cache
+         * @type {Map<string, ListenerBlock>}
          */
 
         /**
@@ -90,7 +80,7 @@ export class EventEmitterConstruct extends CollectionConstruct {
          * be used themselves (see ListenerBlock#once)
          * @type {boolean}
          */
-        this.useOnceByDefault = Boolean(options.useOnceByDefault);
+        this.useOnceByDefault = Boolean(opts.useOnceByDefault);
 
         /**
          * When true, listener functions will have their respective
@@ -110,7 +100,7 @@ export class EventEmitterConstruct extends CollectionConstruct {
          * keyword should be set themselves (see ListenerBlock#bindThis)
          * @type {boolean}
          */
-        this.bindThis = Boolean(options.bindThis);
+        this.bindThis = Boolean(opts.bindThis);
 
         /**
          * When true, the emitter will be bound as the first parameter of loaded
@@ -126,7 +116,7 @@ export class EventEmitterConstruct extends CollectionConstruct {
          * should be bound themselves (see ListenerBlock#bindEmitterParameter)
          * @type {boolean}
          */
-        this.bindEmitterParameter = Boolean(options.bindEmitterParameter);
+        this.bindEmitterParameter = Boolean(opts.bindEmitterParameter);
     }
 
     /**

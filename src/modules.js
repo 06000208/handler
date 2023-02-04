@@ -1,4 +1,3 @@
-export * from "./any/BaseConstruct.js";
 export * from "./any/Construct.js";
 export * from "./any/Block.js";
 export * from "./any/BlockModule.js";
