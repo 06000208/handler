@@ -8,7 +8,8 @@ import { generateIdentifier } from "./util/id.js";
  * be extended for your own use cases.
  *
  * By default, this uses handler's generateIdentifier function for it's ids. If
- * this is undesirable, extend the class and replace Block#_getIdentifier by
+ * this is undesirable, either pass your ids in using the parameter, using
+ * or extend the class and replace Block#_getIdentifier by
  * adding a static function of the same name.
  *
  * Note that you may be better off using your own implementation, and that doing
@@ -17,7 +18,10 @@ import { generateIdentifier } from "./util/id.js";
  * @abstract
  */
 export class Block {
-    constructor() {
+    /**
+     * @param {*} id An identifier for an instantiated block. Needed for serializing blocks to/from regular objects and other use cases.
+     */
+    constructor(id) {
         /**
          * An identifier for an instantiated block.
          *
@@ -26,7 +30,7 @@ export class Block {
          * ids in your own classes.
          * @type {*}
          */
-        this.id = this.constructor._getIdentifier();
+        this.id = id || this.constructor._getIdentifier();
     }
 
     /**
