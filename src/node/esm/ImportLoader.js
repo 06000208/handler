@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { URL } from "node:url";
 import { isAbsolute } from "node:path";
-import { isURL } from "../../any/util/isURL.js";
+import { isURL } from "../util/isURL.js";
 
 /**
  * Note that hot reloading modules and cache busting is incompatible with
