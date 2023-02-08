@@ -5,7 +5,7 @@ import { DataStore } from "./DataStore.js";
  * Stores flat objects either in memory via a Map or through an adapter
  * implementing an async version of the map API
  *
- * If you don't need async adapter support (for example, the keyv package) use the regular DataStore class
+ * If you don't need async adapter support use the regular DataStore class
  */
 export class AsyncDataStore extends DataStore {
     /**
