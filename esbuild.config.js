@@ -51,10 +51,10 @@ const builds = [
         minify: true,
         format: "esm",
         platform: "browser",
-        outfile: "./dist/index.browser.min.js",
+        outfile: "./dist/index.browser.js",
     }),
     esbuildWrapper("minified node cjs", {
-        entryPoints: ["./src/index.commonjs.js"],
+        entryPoints: ["./src/index.cjs.js"],
         minify: true,
         format: "cjs",
         platform: "node",
