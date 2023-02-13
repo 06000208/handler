@@ -1,13 +1,12 @@
 import { FlatDataWrapper, resolveDataFromWrapper } from "./FlatDataWrapper.js";
 
-
 /**
  * Stores flat objects either in memory via a Map or through an adapter
  * implementing the map API
  *
  * See AsyncDataStore for async adapter support (for example, with the keyv package)
  */
-export class DataStore {
+export class FlatDataStore {
     /**
      * @param {Map<string, Object.<string, *>>} [adapter] Anything that implements get, set, delete, and clear, derived from the map api. Expected to handle serialization if needed.
      * @param {?Object.<string, *>} [defaults] Flat object with default values

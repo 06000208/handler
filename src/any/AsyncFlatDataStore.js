@@ -1,5 +1,5 @@
 import { FlatDataWrapper, resolveDataFromWrapper } from "./FlatDataWrapper.js";
-import { DataStore } from "./DataStore.js";
+import { DataStore } from "./FlatDataStore.js";
 
 /**
  * Stores flat objects either in memory via a Map or through an adapter
@@ -7,7 +7,7 @@ import { DataStore } from "./DataStore.js";
  *
  * If you don't need async adapter support use the regular DataStore class
  */
-export class AsyncDataStore extends DataStore {
+export class AsyncFlatDataStore extends DataStore {
     /**
      * Returns a FlatDataWrapper instance for the specified data
      * @param {string} key
