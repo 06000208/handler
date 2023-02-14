@@ -1,7 +1,7 @@
 {
   "name": "@a06000208/handler",
   "version": "0.0.2",
-  "description": "General utilities and extendable javascript handlers for objects, events, and modules",
+  "description": "Extendable javascript handlers for objects, events, and modules",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/06000208/handler.git"
@@ -51,6 +51,7 @@
       "default": "./dist/index.browser.js"
     },
     "./any": {
+      "types": "./dist/index.any.d.ts",
       "import": "./src/index.any.js",
       "default": "./src/index.any.js"
     }
@@ -62,7 +63,6 @@
   "engines": {
     "node": ">=16.9.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "esbuild": "^0.17.5",
     "eslint": "^8.33.0",
