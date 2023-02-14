@@ -9,7 +9,7 @@ import { createRequire } from "node:module";
  * but is generally not recommended
  *
  * Note: You may get this intellisense for the CJS version of the
- * class, which is wrong, but as far as I can see unfixable.
+ * class, which is wrong, but I don't know how to fix it.
  */
 export class RequireLoader {
     constructor(path) {
