@@ -1,3 +1,4 @@
-export * from "./modules.js";
-import * as modules from "./modules.js";
-export default { ...modules };
+// browser and esm only
+export * from "./index.any.js";
+import * as any from "./index.any.js";
+export default { ...any };

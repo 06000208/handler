@@ -1,7 +1,7 @@
 {
   "name": "@a06000208/handler",
   "version": "0.0.2",
-  "description": "Extendable javascript handler for objects, events, and modules",
+  "description": "General utilities and extendable javascript handlers for objects, events, and modules",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/06000208/handler.git"
@@ -16,10 +16,9 @@
     "test": "echo \"Error: no tests\" && exit 1",
     "lint": "eslint . --ext .js,.mjs,.cjs",
     "fix": "eslint . --ext .js,.mjs,.cjs --fix",
-    "dev": "node esbuild.config.js",
     "ts": "npx tsc",
-    "build": "node esbuild.config.js --production && npx tsc",
-    "docs": "echo \"Error: no docs setup\" && exit 1",
+    "build": "node esbuild.config.js && npx tsc",
+    "docs": "echo \"Error: no docs\" && exit 1",
     "prepare": "npm run build"
   },
   "files": [
@@ -32,18 +31,28 @@
       "types": "./dist/index.d.ts",
       "import": "./src/index.js",
       "require": "./dist/index.cjs",
-      "default": "./dist/index.browser.js"
+      "default": "./src/index.any.js"
     },
-    "./browser": {
-      "types": "./dist/index.browser.d.ts",
-      "import": "./dist/index.browser.js",
-      "default": "./dist/index.browser.js"
+    "./node": {
+      "types": "./dist/index.d.ts",
+      "import": "./src/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./src/index.js"
     },
     "./cjs": {
       "types": "./dist/index.cjs.d.ts",
       "import": "./dist/index.cjs",
       "require": "./dist/index.cjs",
       "default": "./dist/index.cjs"
+    },
+    "./browser": {
+      "types": "./dist/index.browser.d.ts",
+      "import": "./dist/index.browser.js",
+      "default": "./dist/index.browser.js"
+    },
+    "./any": {
+      "import": "./src/index.any.js",
+      "default": "./src/index.any.js"
     }
   },
   "main": "./dist/index.cjs",
@@ -53,6 +62,7 @@
   "engines": {
     "node": ">=16.9.0"
   },
+  "dependencies": {},
   "devDependencies": {
     "esbuild": "^0.17.5",
     "eslint": "^8.33.0",

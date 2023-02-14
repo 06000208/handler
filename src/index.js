@@ -1,3 +1,4 @@
+// node and esm only
 export * from "./node.js";
 export * from "./node/esm/ImportLoader.js";
 export * from "./node/esm/ImportQueryLoader.js";
