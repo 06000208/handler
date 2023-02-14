@@ -1,13 +1,13 @@
 import { FlatDataWrapper, resolveDataFromWrapper } from "./FlatDataWrapper.js";
-import { DataStore } from "./FlatDataStore.js";
+import { FlatDataStore } from "./FlatDataStore.js";
 
 /**
  * Stores flat objects either in memory via a Map or through an adapter
  * implementing an async version of the map API
  *
- * If you don't need async adapter support use the regular DataStore class
+ * If you don't need async adapter support use the regular FlatDataStore class
  */
-export class AsyncFlatDataStore extends DataStore {
+export class AsyncFlatDataStore extends FlatDataStore {
     /**
      * Returns a FlatDataWrapper instance for the specified data
      * @param {string} key
